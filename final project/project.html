@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Selling Website</title>
+    <style>
+        html {
+            font-size: 62.5%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            background-color: white;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            height: 300rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            scroll-padding-top: 7rem;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            z-index: 999;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 9%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: padding 0.3s, box-shadow 0.3s;
+        }
+
+        .header .logo {
+            font-size: 2.5rem;
+            color: black;
+            font-weight: bolder;
+        }
+
+        .header .logo span {
+            color: darkgoldenrod;
+        }
+
+        .header .navbar a {
+            font-size: 2rem;
+            margin: 0 1rem;
+            color: black;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .header .navbar a:hover {
+            color: darkgoldenrod;
+        }
+
+        .header.active {
+            padding: 1.5rem 9%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 7rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        img {
+            width: 100%; 
+            max-width: 1000px; 
+            height: auto;
+            background: none; 
+        }
+
+        .explore-button {
+            background-color: darkgoldenrod;
+            color: black;
+            font-size: 2rem;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 2rem; 
+        }
+
+        .explore-button:hover {
+            background-color: greenyellow;
+        }
+        
+        h2 {
+            font-size: 5rem;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vehicles .vehicles-slider {
+            padding-bottom: 5rem;
+        }
+
+        .vehicles .vehicles-slider .box {
+            text-align: center;
+            width: 30rem;
+        }
+
+        .vehicles .vehicles-slider .box img {
+            width: 100%;
+        }
+
+        .vehicles .vehicles-slider .box .content {
+            padding-top: 1rem;
+        }
+
+        .vehicles .vehicles-slider .box .content h3 {
+            font-size: 2.5rem;
+            color: gold;
+        }
+
+        .vehicles .vehicles-slider .box .content .price {
+            font-size: 2.5rem;
+            color: greenyellow;
+            padding: 1rem 0;
+            font-weight: bolder;
+        }
+
+        .vehicles .vehicles-slider .box .content .span {
+            font-size: 1.7rem;
+            color: pink;
+            font-weight: normal;
+        }
+
+        .services {
+            padding: 4rem 0;
+            background-color: #f9f9f9;
+        }
+
+        .services h2 {
+             font-size: 3.5rem;
+             text-align: center;
+             margin-bottom: 3rem;
+            }
+
+            .services .box-container {
+                display: flex;
+                flex-wrap: wrap;  
+                gap: 2rem; 
+                justify-content: center; 
+            }
+
+            .services .box {
+                text-align: center;
+                padding: 4rem;
+                border-radius: 1.5rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                background-color: white;
+            }
+
+            .services .box i {
+                font-size: 3rem;
+                color: #333;
+                margin-bottom: 1rem;
+            }
+
+            .services .box h3 {
+                font-size: 2rem;
+                color: #333;
+                margin-bottom: 1rem;
+            }
+
+            .services .box p {
+                font-size: 1.6rem;
+                color: #666;
+                margin-bottom: 2rem;
+            }
+
+            .services .box .btn {
+                color: greenyellow;
+                font-size: 1.6rem;
+                padding: 1rem 2rem;
+                text-decoration: none;
+            }  
+
+            .services .box-container .box:hover{
+                background: darkgoldenrod ;
+            }
+
+            .services .box-container .box:hover h3{
+                color: #fff ;
+            }
+
+            .services .box-container .box:hover p{
+                color : #fff ;
+            }
+
+            .featured .btn{
+                background-color: darkgoldenrod;
+                text-decoration: none;
+                font-size:1rem;
+                padding: 0.5rem 1.5rem;
+                color: black
+
+            }
+
+            .featured .featured-slider {
+                padding: 1rem;
+                padding-bottom: 4rem;
+                display: flex; 
+                flex-wrap: nowrap; 
+                overflow-x: auto; 
+            }
+
+            .featured .featured-slider .box {
+                text-align: center;
+                padding: 2rem;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border: var(--border);
+                border-radius: .5rem;
+                flex: 0 0 auto; 
+                margin-right: 20px; 
+            }
+
+            .featured .featured-slider .box img {
+                height: 15rem;
+            }
+
+            .featured .featured-slider .box:hover img {
+                transform: scale(.9);
+            }
+
+            .featured .featured-slider .box h3 {
+                font-size: 2.2rem;
+                color: black;
+            }
+
+            .featured .featured-slider .box .stars {
+                padding: 1rem 0;
+            }
+
+            .featured .featured-slider .box .stars i {
+                font-size: 1.7rem;
+                color: yellow;
+            }
+
+            .featured .featured-slider .box .price {
+                font-size: 2.5rem;
+                color: black;
+            }
+
+            .newsletter{
+                padding:6rem 2rem;
+                text-align: center;
+                background: url(670x377image1.jpg) no repeat;
+                background-position: center;
+                background-size: cover;
+            }
+            
+            .newsletter h3{
+                color:black;
+                font-size:3rem;
+            }
+
+            .newsletter p{
+                color:black;
+                font-size:1.5rem;
+                padding:1rem 0;
+            }
+
+            .newsletter form{
+                margin:1rem auto;
+                max-width:60rem;
+                height:5rem;
+                display: flex;
+                box-shadow: var(--box-shadow);
+                overflow: hidden;
+                border-radius: 5rem;
+            }
+
+            .newsletter form input[type="email"]{
+                height: 100%;
+                width: 100rem;
+                font-size: 1.6rem;
+                color:black;
+                background: lightyellow;
+                
+            }
+            .newsletter form input[type="submit"]:hover{
+                background: darkgoldenrod;
+            }
+
+            .contact .row {
+                display:flex;
+                flex-wrap:wrap;
+                gap:1.5rem;
+            }
+
+            .contact .row .box form{
+                flex:1 1 42rem;
+                padding:2rem;
+                border:1px solid black;
+                border-radius: .5rem;
+                box-shadow: 1px solid black;
+                text-align:center;
+            }
+
+            .contact .row .box form h3{
+                font-size: 3rem;
+                color:black;
+            }
+
+            .contact .row form .box{
+                margin:.7rem 0;
+                width:100%;
+                border:1px solid black;
+                padding:1rem;
+                font-size: 1.6rem;
+                color:black;
+                text-transform: none;
+                border-radius: .5rem;
+            }
+
+            .contact .row form textarea{
+                height: 15rem;
+                resize: none;
+            }
+            .contact .button {
+                background-color: darkgoldenrod;
+                font-size: 1.6rem;
+                padding: 1rem 2rem;
+                text-decoration: none;
+            }  
+            .contact .button :hover {
+            background-color: greenyellow;
+            }
+
+                   
+    </style>
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <header class="header">
+        <a href="#" class="logo"><span>Collins</span>Autos</a>
+
+        <nav class="navbar">
+            <a href="#home">Home</a>
+            <a href="#vehicles">Vehicles</a>
+            <a href="#services">Services</a>
+            <a href="#featured">Featured</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <h1>FIND YOUR CAR</h1>
+
+    <div style="display: flex; justify-content: center;">
+        <img src="modern-cars-white-showroom-isolated-background-59012301.webp" alt="Car Image">
+    </div>
+
+    <button class="explore-button">Explore Cars</button>
+
+    <h2>Popular Vehicles</h2>
+
+    <section class="vehicles" id="vehicles"
+        <h2 class="heading">popular <span>vehicles</span></h2>
+        <div class="vehicles-slider">
+            <div class="wrapper">
+                <div class="box">
+                    <img src="AmalgamBugattiSupersportBlue_Chrome1-8HR_5_4000x2677_crop_center.webp" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price: </span> $3,000,000/-</div>
+                        <p>
+                            new<br>
+                            <span class="fas fa-circle"></span>2024<br>
+                            <span class="fas fa-circle"></span>automatic<br>
+                            <span class="fas fa-circle"></span>Bugatti<br>
+                            <span class="fas fa-circle"></span>300mph
+                        </p>
+                        <a href="#" class="explore-button">check out</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="adro_ford_mustang_coupe_car_white_background_4k_hd_cars.jpg" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price: </span> $57,000/-</div>
+                        <p>
+                            new<br>
+                            <span class="fas fa-circle"></span>2021<br>
+                            <span class="fas fa-circle"></span>automatic<br>
+                            <span class="fas fa-circle"></span>Ford<br>
+                            <span class="fas fa-circle"></span>180mph
+                        </p>
+                        <a href="#" class="explore-button">check out</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="2017-rolls-royce-dawn-wallpaper-preview.jpg" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price: </span> $447,850/-</div>
+                        <p>
+                            new<br>
+                            <span class="fas fa-circle"></span>2022<br>
+                            <span class="fas fa-circle"></span>automatic<br>
+                            <span class="fas fa-circle"></span>rolls-royce<br>
+                            <span class="fas fa-circle"></span>200mph
+                        </p>
+                        <a href="#" class="explore-button">check out</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="360_F_636014891_ne8XUB4YU4WoMeUUjr0TU6wH38wNTU6V.jpg" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price: </span> $65,000/-</div>
+                        <p>
+                            new<br>
+                            <span class="fas fa-circle"></span>1999<br>
+                            <span class="fas fa-circle"></span>automatic<br>
+                            <span class="fas fa-circle"></span>Mustang vintage<br>
+                            <span class="fas fa-circle"></span>120mph
+                        </p>
+                        <a href="#" class="explore-button">check out</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="Dodge-Challenger_RT_Redline-2013-1024-05.jpg" alt="">
+                    <div class="content">
+                        <h3>new model</h3>
+                        <div class="price"><span>price: </span> $160,000/-</div>
+                        <p>
+                            new<br>
+                            <span class="fas fa-circle"></span>2025<br>
+                            <span class="fas fa-circle"></span>automatic<br>
+                            <span class="fas fa-circle"></span>hellcat<br>
+                            <span class="fas fa-circle"></span>270mph
+                        </p>
+                        <a href="#" class="explore-button">check out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!--our service starts-->
+<section class="services" id="services">
+    <h2>Other Services</h2>
+    <div class="box-container">
+        <div class="box">
+            <i class="fas fa-car"></i>
+            <h3>car selling</h3>
+            <p>the cars ksdjdvn rerifoirv erurvnerv rcur</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+        <div class="box">
+            <i class="fas fa-tools"></i>
+            <h3>parts repair</h3>
+            <p>the cars ehregtg regtrgt rgtgttgt rt</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+        <div class="box">
+            <i class="fas fa-car-crash"></i>
+            <h3>car insureance</h3>
+            <p>the cars regtgt tgtget4 gtgtgtb b</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+        <div class="box">
+            <i class="fas fa-car-battery"></i>
+            <h3>battery replace</h3>
+            <p>the cars fiefg ireivitv ijrvjevjfjv iodcev</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+        <div class="box">
+            <i class="fas fa-gas-pump"></i>
+            <h3>oil change</h3>
+            <p>the cars sr3rg4t5g4gh errgtg erght3 erg</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+        <div class="box">
+            <i class="fas fa-support"></i>
+            <h3>24/7 support</h3>
+            <p>the cars erhh rewhrh34th r3hg3hh eqrhrhrg</p>
+            <a href="#" class="btn">read more</a>            
+        </div>
+         
+    </div> 
+</section>
+
+<!--featured starts-->
+<selection class="featured" id="featured">
+    <h2> Featured Cars </h2>
+    <div class="featured-slider">
+        <div class="swiper-wrapper">
+
+            <div class="box">
+                <img src="451-4510416_mclaren-houston.png" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="HD-wallpaper-ferrari-fantastic2.jpg" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="390e21b40e514eed3.jpg" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="pngtree-the-image-of-an-orange4.jpg" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+            <div class="swiper-slide box">
+                <img src="blue-cars-car5.jpg" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+            <div class="box">
+                <img src="2017-rolls-royce-dawn-wallpaper-preview.jpg" alt="">
+                <h3>new model</h3>
+                <div class="stars">
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star "></i>
+                    <i class="fas fa-star-half-alt "></i>
+                </div>
+                <div class="price">$300,000/-</div>
+                <a href="#" class="btn">check out</a>
+            </div>
+
+
+        </div>
+    </div>
+    
+</selection>
+
+<!--news latter-->
+<section class="newsletter">
+    <h3>subscribe for latest updates</h3>
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ver, ducimus.</p>
+    <form action="">
+        <input type="email" placeholder="enter your email" name="" id="">
+        <input type="submit" class="subscribe" name="" id="">
+    </form>
+</section>
+
+<!--contact starts-->
+<section class="contact" id="contact">
+<h2> contact us </h2>
+<div class="row">
+
+    <form action="">
+        <h3>Get In Touch</h3>
+        <input type="text" placeholder="name" class="box">
+        <input type="email" placeholder="email" class="box">
+        <input type="number" placeholder="number" class="box">
+        <textarea placeholder="message" class="box" cols="30" rows="10"></textarea>
+        <input type="submit" value="send message" class="button">
+    </form>
+
+</div>
+
+</section>
+</body>
+</html>
